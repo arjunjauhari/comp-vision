@@ -1,0 +1,31 @@
+#!/bin/sh
+# script to evaluate vtpeak with different patch parameters
+## Syntax:  patcheval <image-file>
+## Returns: the processed images in <image-file>.sq
+oname=$1.sq
+tmp=tmp.$$.sq
+if [ "$#" != "1" ]
+then
+echo "Error: a single file name argument is required"
+exit
+fi
+
+rm -f $oname
+#looping over different patch values
+for i in 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100
+do
+  #looping over different overlap values
+  for j in 0
+  do
+    #param="Patch size: $i  Overlap: $j"
+    param="Range: $i  Overlap: $j"
+    echo $param
+    #vpatch $1 p=$i l=$j | vtpeak d=50| vquilt rf=$1 -p of=$tmp
+    ./vgrow r=$i -p $1 of=$tmp
+    #./vgrow r=$i $1 of=$tmp
+    vcapt $tmp c="$param" | vdim -c |  vxfile  of=$oname
+    rm -f $tmp
+  done
+done
+
+
