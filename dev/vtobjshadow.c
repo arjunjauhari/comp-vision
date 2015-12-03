@@ -12,6 +12,7 @@ VXparam_t par[] =            /* command line structure               */
 {  "of2=",  0,   " output file "},
 {  "d=",    0,   " min mindist between hgram peaks (default 10)"},
 {  "-v",    0,   "(verbose) print threshold information"},
+{  "-s",    0,   " creates a single obj-shadow segemented image"},
 {   0,      0,   0} /* list termination */
 };
 #define  IVAL   par[0].val
@@ -19,6 +20,7 @@ VXparam_t par[] =            /* command line structure               */
 #define  OVAL2  par[2].val
 #define  DVAL   par[3].val
 #define  VFLAG  par[4].val
+#define  SFLAG  par[5].val
 
 main(argc, argv)
 int argc;
@@ -157,8 +159,21 @@ char *argv[];
                  else                         im2.u[y][x] = 0;
             }
         }
+
+        if (SFLAG) {
+            /* ORing the two images */
+            for (y = im.ylo; y <= im.yhi; y++) {
+                for (x = im.xlo; x <= im.xhi; x++) {
+                    if (im.u[y][x] || im2.u[y][x]) {
+                        im.u[y][x] = 255;
+                    }
+                }
+            }
+        }
+
         Vfwrite( &im,  OVAL);
-        Vfwrite( &im2, OVAL2);
+        if (!SFLAG)
+            Vfwrite( &im2, OVAL2);
     } /* end of every frame section */
     exit(0);
 }
