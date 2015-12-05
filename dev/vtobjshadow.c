@@ -11,6 +11,7 @@ VXparam_t par[] =            /* command line structure               */
 {  "of=",   0,   " output file "},
 {  "of2=",  0,   " output file "},
 {  "d=",    0,   " min mindist between hgram peaks (default 10)"},
+{  "p=",    0,   " max number of valid peaks (default 10)"},
 {  "-v",    0,   "(verbose) print threshold information"},
 {  "-s",    0,   " creates a single obj-shadow segemented image"},
 {   0,      0,   0} /* list termination */
@@ -19,8 +20,9 @@ VXparam_t par[] =            /* command line structure               */
 #define  OVAL   par[1].val
 #define  OVAL2  par[2].val
 #define  DVAL   par[3].val
-#define  VFLAG  par[4].val
-#define  SFLAG  par[5].val
+#define  PVAL   par[4].val
+#define  VFLAG  par[5].val
+#define  SFLAG  par[6].val
 
 main(argc, argv)
 int argc;
@@ -47,16 +49,24 @@ char *argv[];
     int rerun;
     int dist;
     int mindist;
+    int maxpeak;
     int shadowth, objth;
 
 			     
     VXparse(&argc, &argv, par);    /* parse the command line         */
 
-    mindist = 7;                    /* default mindist */
+    mindist = 10;                    /* default mindist */
     if (DVAL) mindist = atoi(DVAL);  /* if d= was specified, get value */
     if (mindist < 0 || mindist > 255) {
 	fprintf(stderr, "d= must be between 0 and 255\nUsing d=10\n");
-        mindist = 7;
+        mindist = 10;
+    }
+
+    maxpeak = 10;                    /* default maxpeak */
+    if (DVAL) maxpeak = atoi(PVAL);  /* if d= was specified, get value */
+    if (maxpeak < 0 || maxpeak > 255) {
+	fprintf(stderr, "d= must be between 0 and 255\nUsing d=10\n");
+        maxpeak = 10;
     }
 
     while ( Vfread( &im, IVAL) ) {
@@ -100,7 +110,7 @@ char *argv[];
                 flag = 1;
                 normthresh /= 2;    // reduce 50%
                 continue;
-            } else if (npeaks > 8) {
+            } else if (npeaks > maxpeak) {
                 /* increase thresh and continue */
                 flag = 1;
                 normthresh *= 1.1;
