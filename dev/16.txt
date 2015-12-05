@@ -1,0 +1,17 @@
+apcnt	132047
+bpcnt	139334
+overlap	96974
+anotb	35073
+bnota	139334
+union	174407
+diff	77433
+tp	96974
+tn	270063
+fp	167120
+fn	42360
+fpc	0.44426
+sim	0.55602
+sens	0.69598
+spec	0.61773
+jin	0.31644
+dsc	0.48075

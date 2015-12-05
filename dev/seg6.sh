@@ -10,7 +10,9 @@
 
 ./vtobjshadow if=$1_vgrow d=7 p=8 -v -s of=$1_vgrow_vtboth
 
-vmedian xy=15 $1_vgrow_vtboth of=$1_vmed
+vmedian xy=10 $1_vgrow_vtboth of=$1_vmed
+
+#vrdiff if=$1.1.vxa bf=$tmp -ci of=$1_eval ig=$1.vx os=$1.txt
 
 vdview pm=0 $1_vgrow &
 vdview pm=0 $1_vgrow_vtboth &
