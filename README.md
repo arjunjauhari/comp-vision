@@ -11,7 +11,10 @@ We were able to get workable segmentation algorithm, good enough, with adjustmen
 calculating angle of illumination for future work.
 
 ### Poster
-![alt text](https://github.com/arjunjauhari/meng-project/blob/master/documentation/AJPoster/AJPoster.png "Poster")
+![alt text](https://github.com/arjunjauhari/comp-vision/blob/master/Object-Shadow%20Pair%20Detection.pdf "Poster")
 
 ### Project Notes
-[Click Here!!](https://github.com/arjunjauhari/meng-project/blob/master/documentation/AJPoster/ProjectNotes.pdf)
+[Click Here!!](https://github.com/arjunjauhari/comp-vision/blob/master/report/FinalReport.pdf)
+
+### Source Code
+Code is present in dev/\*.c and helper scripts are in dev/\*.sh
