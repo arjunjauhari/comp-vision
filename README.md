@@ -11,7 +11,7 @@ We were able to get workable segmentation algorithm, good enough, with adjustmen
 calculating angle of illumination for future work.
 
 ### Poster
-![alt text](https://github.com/arjunjauhari/comp-vision/blob/master/Object-Shadow%20Pair%20Detection.pdf "Poster")
+![alt text](https://github.com/arjunjauhari/comp-vision/blob/master/Poster.png "Poster")
 
 ### Project Notes
 [Click Here!!](https://github.com/arjunjauhari/comp-vision/blob/master/report/FinalReport.pdf)
